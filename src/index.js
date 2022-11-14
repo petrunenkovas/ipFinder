@@ -32,9 +32,9 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 L.marker([51.505, -0.09], {icon:markerIkon}).addTo(map);
 
-function getData() {
+async function getData() {
     if (validateIp(ipInput.value)) {
-        fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_SJFre2NfjL9pki113AW82NMV8TtfR&ipAddress=${ipInput.value}`)
+        await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_SJFre2NfjL9pki113AW82NMV8TtfR&ipAddress=${ipInput.value}`)
         .then(response => response.json())
         .then(setInfo)
     }
@@ -61,8 +61,8 @@ function setInfo(mapData) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_SJFre2NfjL9pki113AW82NMV8TtfR&ipAddress=110.12.33.145`)
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetch(`https://geo.ipify.org/api/v2/country,city?apiKey=at_SJFre2NfjL9pki113AW82NMV8TtfR&ipAddress=110.12.33.145`)
         .then(response => response.json())
         .then(setInfo)
 })
